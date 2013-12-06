@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Simple data bind	</title>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h1>Simple data bind</h1>
+		<p> You have clicked the button <span data-bind="text: click"></span> times.
+			<input type="button" value="Click Me"  data-bind="click: clickAction"/>
+			<input type="button" value="Reset Count" data-bind="click: reset,visible: allowReset">
+		</p>
+		<p>Hello, <span data-bind="text: name"></span>!</p>
+		<script type="text/javascript">
+			 var PageViewModel = function() {
+			 	this.click = ko.observable(0);
+			 	this.name = ko.observable("World");
+			 	this.clickAction = function(){ 
+			 		this.click(this.click() + 1);
+			 	};
+			 	this.reset = function(){
+			 		this.click(0);
+			 	};
+			 	this.allowReset = ko.computed(function(){
+			 		return this.click() > 4;
+			 	}, this);
+			 };
+
+			ko.applyBindings(new PageViewModel());
+		</script>
+		
+	</div>
+</body>
