@@ -29,7 +29,7 @@
 			self.newTaskText = ko.observable();
 
 			self.addTask = function(){
-				self.tasks().push(new Task({body : this.newTaskText()}));
+				self.tasks.push(new Task({body : this.newTaskText()}));
 				self.newTaskText("");
 			};
 		}
